@@ -36,16 +36,19 @@ public class EmployeeResource {
 
     @PostMapping("/add")
     public ResponseEntity<Employee> addEmployee(@RequestBody Employee employee){
+        LOGGER.info("Llamado a creacion de empleado");
         return new ResponseEntity<>(employeeService.addEmployee(employee), HttpStatus.CREATED);
     }
 
     @PutMapping("/update")
     public ResponseEntity<Employee> updateEmployee(@RequestBody Employee employee){
+        LOGGER.info("Llamado a actualizacion de empleado con id: {}", employee.getId());
         return new ResponseEntity<>(employeeService.updateEmployee(employee), HttpStatus.OK);
     }
 
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<?> deleteEmployee(@PathVariable("id") Long id){
+        LOGGER.info("Llamado a borrado de empleado con id: {}", id);
         employeeService.deleteEmployee(id);
         return new ResponseEntity<>(HttpStatus.OK);
     }
